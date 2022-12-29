@@ -9,6 +9,7 @@ import 'package:chewie/src/player_with_controls.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:swipe/swipe.dart';
 import 'package:video_player/video_player.dart';
 import 'package:wakelock/wakelock.dart';
 
@@ -102,7 +103,11 @@ class ChewieState extends State<Chewie> {
       body: Container(
         alignment: Alignment.center,
         color: Colors.black,
-        child: controllerProvider,
+        child: Swipe(
+            onSwipeDown: () {
+              controllerProvider.controller.exitFullScreen();
+            },
+            child: controllerProvider),
       ),
     );
   }
